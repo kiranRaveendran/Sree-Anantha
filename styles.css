@@ -1,0 +1,371 @@
+:root {
+  --saffron: #b15a1f;
+  --maroon: #575d1f;
+  --cream: #fbf5e8;
+  --gold: #c89b3c;
+  --text: #2f2520;
+  --white: #ffffff;
+  --shadow: 0 10px 30px rgba(50, 24, 12, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #fffdf8 0%, var(--cream) 100%);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.brand-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+a {
+  color: var(--maroon);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 4.5rem 0;
+}
+
+.soft-bg {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  background: rgba(251, 245, 232, 0.94);
+  border-bottom: 1px solid rgba(200, 155, 60, 0.35);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 84px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid rgba(200, 155, 60, 0.55);
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 1.45rem;
+  color: var(--maroon);
+  font-weight: 700;
+}
+
+.brand-subtitle {
+  margin: 0.1rem 0 0;
+  font-size: 0.82rem;
+  color: #6a5145;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-weight: 600;
+  padding: 0.15rem 0.2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: linear-gradient(140deg, var(--saffron), #a54618);
+  color: var(--white);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.72rem 1.2rem;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(50, 24, 12, 0.15);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--maroon);
+  color: var(--maroon);
+  box-shadow: none;
+  color: wheat;
+}
+
+.btn-sm {
+  padding: 0.52rem 0.95rem;
+  font-size: 0.9rem;
+}
+
+.hero {
+  position: relative;
+  color: #fdfaf2;
+  background-image:
+    linear-gradient(120deg, rgba(34, 12, 10, 0.72), rgba(73, 30, 18, 0.58)),
+    url("Sree Anantha.png");
+  background-size: cover;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.kicker {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ffd9a3;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.hero-content h1 {
+  margin: 0.2rem 0 1rem;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  color: #fffaf1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content p {
+  margin: 0 0 1.25rem;
+  max-width: 62ch;
+  color: #fff7e8;
+}
+
+.hero-contact {
+  font-weight: 600;
+  color: #ffe8c2;
+}
+
+.hero-contact a {
+  color: #fff7e8;
+  font-size: 20px;
+}
+
+.hero-contact a:hover {
+  color: #ffd9a3;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.hero-card {
+  background: rgba(255, 250, 240, 0.92);
+  border: 1px solid rgba(255, 220, 162, 0.55);
+  border-radius: 16px;
+  padding: 1.35rem 1.25rem;
+  box-shadow: var(--shadow);
+  color: rgb(219, 155, 36);
+}
+
+.hero-card h2 {
+  margin: 0 0 0.8rem;
+  color: var(--maroon);
+}
+
+.hero-card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.hero-card li + li {
+  margin-top: 0.55rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.about-map iframe {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.about-content h2 {
+  margin-top: 0;
+}
+
+h2 {
+  margin: 0 0 0.85rem;
+  color: var(--maroon);
+  font-size: clamp(1.6rem, 2.2vw, 2.25rem);
+}
+
+.cards {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid rgba(200, 155, 60, 0.4);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.card h3 {
+  margin: 0 0 0.45rem;
+  color: #4a1d1d;
+  font-size: 1.4rem;
+}
+
+.booking-box {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.booking-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.contact-item {
+  margin: 0.4rem 0;
+}
+
+.map-placeholder {
+  background: var(--white);
+  border: 1px solid rgba(200, 155, 60, 0.4);
+  border-radius: 14px;
+  padding: 1.1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.map-placeholder h3 {
+  margin: 0;
+  color: var(--maroon);
+}
+
+.map-placeholder p {
+  margin: 0;
+}
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(200, 155, 60, 0.35);
+  background-image:
+    linear-gradient(120deg, rgba(35, 12, 8, 0.78), rgba(83, 35, 16, 0.74)),
+    url("demo three.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem 0;
+}
+
+.footer-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: #fff5e3;
+}
+
+.footer-wrap p {
+  margin: 0;
+}
+
+.footer-wrap a {
+  color: #ffd9a3;
+  font-weight: 600;
+}
+
+.footer-wrap a:hover {
+  color: #fff3dc;
+}
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .about-grid,
+  .contact-grid,
+  .booking-box {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
