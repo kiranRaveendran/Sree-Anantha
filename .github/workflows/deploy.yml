@@ -18,9 +18,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 21098 # Confirm if your port is 21098 or 22
-          source: "./*" # This grabs everything in your repo
+          port: 21098 # <--- This is now confirmed correct!
+          source: "./*" 
           target: "/home/${{ secrets.SSH_USER }}/public_html"
-          # Optional: exclude the .github folder from being uploaded
-          rm: false 
           strip_components: 0
