@@ -1,0 +1,7 @@
+Create the full path at once:
+mkdir -p .github/workflows
+
+Create the file:
+New-Item -Path .github/workflows/deploy.yml -ItemType File -Force
+
+Run this command to see your directory tree:

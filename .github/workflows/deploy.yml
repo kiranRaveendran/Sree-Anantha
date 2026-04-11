@@ -1,0 +1,31 @@
+name: Remote Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Execute Remote SSH Commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: 21098 
+          script: |
+            # Navigate to where your project lives on the server
+            cd /home/sreezmqo/public_html/your_folder_name
+            
+            # Pull changes
+            git pull origin main
+            
+            # Restart the app (for cPanel/Python Selector setups)
+            touch passenger_wsgi.py
