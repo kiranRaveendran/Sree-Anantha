@@ -12,20 +12,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Copy Files to Server (SCP)
-        uses: appleboy/scp-action@v0.1.7 # Using a stable version
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          port: 21098
-          use_insecure_cipher: true # Fixes most EOF/Handshake errors on cPanel
-          source: "."
-          # Update 'sreeanantha' to your actual folder name if it's different
-          target: "/home/sreezmqo/public_html/sreeanantha"
-
-      - name: Execute Remote Commands (SSH)
+      - name: Execute Remote SSH Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -34,6 +21,15 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 21098
           script: |
-            cd /home/sreezmqo/public_html/sreeanantha
+            # Navigate to the project folder
+            cd /home/sreezmqo/public_html/your_folder_name
+            
+            # Reset any local changes on the server to avoid merge conflicts
+            git fetch --all
+            git reset --hard origin/main
+            
+            # Pull the latest code
             git pull origin main
+            
+            # Restart the app
             touch passenger_wsgi.py
