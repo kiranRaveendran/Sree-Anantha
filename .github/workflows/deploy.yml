@@ -1,9 +1,9 @@
-name: Deploy Static Website
+name: Deploy Website
 
 on:
   push:
     branches:
-      - main
+      - main  # Deployment triggers when you push to the main branch
 
 jobs:
   deploy:
@@ -12,16 +12,27 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Deploy to Server
+      - name: Copy Files to Server (SCP)
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 21098
-          # If your new key has NO password, remove the passphrase line below:
-          # passphrase: ${{ secrets.SSH_PASSPHRASE }} 
-          use_insecure_cipher: true 
-          source: "./*"
-          target: "/home/sreezmqo/public_html"
-          strip_components: 0
+          source: "."
+          # IMPORTANT: Change 'your_folder_name' to your actual subfolder name if needed
+          target: "/home/sreezmqo/public_html/your_folder_name"
+
+      - name: Execute Remote Commands (SSH)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: 21098
+          script: |
+            cd /home/sreezmqo/public_html/your_folder_name
+            # If this is Django, we touch this file to reload the app
+            touch passenger_wsgi.py
