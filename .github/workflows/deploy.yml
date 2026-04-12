@@ -3,7 +3,7 @@ name: Deploy Website
 on:
   push:
     branches:
-      - main  # Deployment triggers when you push to the main branch
+      - main
 
 jobs:
   deploy:
@@ -13,16 +13,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Copy Files to Server (SCP)
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.7 # Using a stable version
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 21098
+          use_insecure_cipher: true # Fixes most EOF/Handshake errors on cPanel
           source: "."
-          # IMPORTANT: Change 'your_folder_name' to your actual subfolder name if needed
-          target: "/home/sreezmqo/public_html/your_folder_name"
+          # Update 'sreeanantha' to your actual folder name if it's different
+          target: "/home/sreezmqo/public_html/sreeanantha"
 
       - name: Execute Remote Commands (SSH)
         uses: appleboy/ssh-action@v1.0.3
@@ -33,6 +34,6 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 21098
           script: |
-            cd /home/sreezmqo/public_html/your_folder_name
-            # If this is Django, we touch this file to reload the app
+            cd /home/sreezmqo/public_html/sreeanantha
+            git pull origin main
             touch passenger_wsgi.py
